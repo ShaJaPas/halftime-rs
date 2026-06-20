@@ -1,0 +1,51 @@
+[package]
+name = "halftime"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+description = "HalftimeHash: almost-universal hashing for long strings"
+keywords = ["crypto", "hash", "universal-hashing", "no-std"]
+categories = ["cryptography", "no-std"]
+license = "Apache-2.0 OR MIT"
+
+[dependencies]
+universal-hash = "0.6"
+
+[target.'cfg(any(target_arch = "x86_64", target_arch = "x86"))'.dependencies]
+cpufeatures = "0.3"
+
+[dev-dependencies]
+criterion = { version = "0.8", features = ["html_reports"] }
+poly1305 = "0.9"
+
+[[bench]]
+name = "halftime"
+harness = false
+
+[profile.bench]
+codegen-units = 1
+lto = "fat"
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+
+[features]
+default = []
+
+[lints.rust]
+missing_docs = "deny"
+unused_lifetimes = "deny"
+unused_qualifications = "deny"
+unreachable_pub = "deny"
+
+[lints.rust.unexpected_cfgs]
+level = "warn"
+check-cfg = [
+    'cfg(halftime_backend, values("soft"))',
+]
+
+[lints.clippy]
+std_instead_of_core = "warn"
+std_instead_of_alloc = "warn"
+undocumented_unsafe_blocks = "deny"
