@@ -3,10 +3,15 @@ name = "halftime"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.89"
+authors = ["ShaJaPas"]
 description = "HalftimeHash: almost-universal hashing for long strings"
 keywords = ["crypto", "hash", "universal-hashing", "no-std"]
 categories = ["cryptography", "no-std"]
 license = "Apache-2.0 OR MIT"
+documentation = "https://docs.rs/halftime"
+homepage = "https://github.com/shajapas/halftime"
+repository = "https://github.com/shajapas/halftime"
+readme = "README.md"
 
 [dependencies]
 universal-hash = "0.6"
